@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import heroDemo from '../../assets/hero_demo.png';
 
 const Hero = () => {
   return (
@@ -51,7 +52,7 @@ const Hero = () => {
           className="flex-1 w-full max-w-md md:max-w-none relative"
         >
           <div className="relative rounded-t-full rounded-b-3xl border-8 border-white shadow-2xl overflow-hidden aspect-[4/5] bg-brand-maroon-light/20 flex items-center justify-center">
-             <img src="/src/assets/hero_demo.png" alt="Tailoring Class Training" className="object-cover w-full h-full" />
+             <img src={heroDemo} alt="Tailoring Class Training" className="object-cover w-full h-full" />
           </div>
           {/* Decorative badge */}
           <div className="absolute -bottom-6 -left-6 bg-brand-gold text-brand-maroon p-6 rounded-full shadow-xl border-4 border-white flex flex-col items-center justify-center w-32 h-32 transform rotate-12">

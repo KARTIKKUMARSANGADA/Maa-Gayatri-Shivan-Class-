@@ -1,6 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import aboutDemo from '../../assets/about_demo.png';
 
 const About = ({ isPreview = false }) => {
   return (
@@ -20,7 +21,7 @@ const About = ({ isPreview = false }) => {
               {/* Decorative background box */}
               <div className="absolute top-4 -left-4 w-full h-full bg-brand-gold rounded-lg -z-10"></div>
               <div className="bg-brand-cream rounded-lg overflow-hidden border border-brand-maroon/10 shadow-lg aspect-[4/3] flex items-center justify-center">
-                 <img src="/src/assets/about_demo.png" alt="About Maa Gayatri Shivan Class" className="w-full h-full object-cover" />
+                 <img src={aboutDemo} alt="About Maa Gayatri Shivan Class" className="w-full h-full object-cover" />
               </div>
             </div>
           </motion.div>
