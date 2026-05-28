@@ -20,6 +20,7 @@ class GalleryItemBase(BaseModel):
     title: str
     span: str
     icon: str
+    image_url: Optional[str] = None
 
 class GalleryItemCreate(GalleryItemBase):
     pass

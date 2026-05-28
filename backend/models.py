@@ -18,6 +18,7 @@ class GalleryItem(Base):
     title = Column(String, index=True)
     span = Column(String)
     icon = Column(String)
+    image_url = Column(String, nullable=True)
 
 class Testimonial(Base):
     __tablename__ = "testimonials"

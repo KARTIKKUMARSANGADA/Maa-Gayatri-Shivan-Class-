@@ -32,7 +32,7 @@ const Footer = () => {
             <ul className="space-y-3 font-body">
               <li className="flex items-start gap-3">
                 <FiMapPin className="text-brand-gold mt-1 shrink-0" />
-                <span>Near Shakbhaji Market Gate, Dahod Road, Limbdi - 389180</span>
+                <span>Near Shakbhaji Market Gate, Dahod Road, Limdi - 389180</span>
               </li>
               <li className="flex items-center gap-3">
                 <FiPhone className="text-brand-gold shrink-0" />

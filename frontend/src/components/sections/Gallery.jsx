@@ -30,13 +30,17 @@ const Gallery = ({ isPreview = false }) => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className={`relative rounded-xl overflow-hidden group bg-brand-cream-dark border border-brand-gold/20 flex items-center justify-center ${item.span}`}
             >
-              <div className="text-brand-maroon/50 text-center">
-                <span className="block text-3xl mb-2">{item.icon}</span>
-                <span className="font-heading font-semibold">{item.title}</span>
-              </div>
+              {item.image_url ? (
+                <img src={item.image_url} alt={item.title} className="absolute inset-0 w-full h-full object-cover" />
+              ) : (
+                <div className="text-brand-maroon/50 text-center relative z-10">
+                  <span className="block text-3xl mb-2">{item.icon}</span>
+                  <span className="font-heading font-semibold">{item.title}</span>
+                </div>
+              )}
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-brand-maroon/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+              <div className="absolute inset-0 bg-brand-maroon/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center z-20">
                 <p className="text-brand-gold font-heading font-bold text-xl px-4 text-center">
                   {item.title}
                 </p>

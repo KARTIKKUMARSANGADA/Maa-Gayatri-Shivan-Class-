@@ -5,7 +5,8 @@ import ConfirmModal from '../../components/admin/ConfirmModal';
 
 const ManageGallery = () => {
   const { gallery, addGalleryItem, deleteGalleryItem } = useData();
-  const [formData, setFormData] = useState({ title: '', icon: '', span: 'col-span-1 row-span-1' });
+  const [formData, setFormData] = useState({ title: '', icon: '🖼️', span: 'col-span-1 row-span-1', image_url: '' });
+  const [isUploading, setIsUploading] = useState(false);
 
   // Search & Filter State
   const [searchQuery, setSearchQuery] = useState('');
@@ -40,11 +41,37 @@ const ManageGallery = () => {
     }
   };
 
+  const handleImageUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setIsUploading(true);
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+    uploadData.append('upload_preset', 'gayatri-project');
+
+    try {
+      const res = await fetch('https://api.cloudinary.com/v1_1/dvlole3bn/image/upload', {
+        method: 'POST',
+        body: uploadData
+      });
+      const data = await res.json();
+      if (data.secure_url) {
+        setFormData(prev => ({ ...prev, image_url: data.secure_url }));
+      }
+    } catch (error) {
+      console.error('Error uploading image:', error);
+      alert('Failed to upload image. Please try again.');
+    } finally {
+      setIsUploading(false);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!formData.title || !formData.icon) return;
     addGalleryItem(formData);
-    setFormData({ title: '', icon: '', span: 'col-span-1 row-span-1' });
+    setFormData({ title: '', icon: '🖼️', span: 'col-span-1 row-span-1', image_url: '' });
   };
 
   return (
@@ -67,13 +94,28 @@ const ManageGallery = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-body text-gray-700 mb-1">Icon (Emoji)</label>
+                <label className="block text-sm font-body text-gray-700 mb-1">Photo Upload</label>
+                <input 
+                  type="file" 
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                  className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon/50"
+                />
+                {isUploading && <p className="text-sm text-brand-gold mt-1 font-bold">Uploading to Cloudinary...</p>}
+                {formData.image_url && (
+                  <div className="mt-2 h-32 w-full rounded-md overflow-hidden border">
+                    <img src={formData.image_url} alt="Preview" className="w-full h-full object-cover" />
+                  </div>
+                )}
+              </div>
+              <div>
+                <label className="block text-sm font-body text-gray-700 mb-1">Icon (Emoji Fallback)</label>
                 <input 
                   type="text" 
                   value={formData.icon}
                   onChange={(e) => setFormData({...formData, icon: e.target.value})}
                   className="w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-brand-maroon/50"
-                  placeholder="e.g. 👗"
+                  placeholder="e.g. 🖼️"
                 />
               </div>
               <div>
@@ -88,8 +130,12 @@ const ManageGallery = () => {
                   <option value="col-span-1 row-span-2">Tall (1x2)</option>
                 </select>
               </div>
-              <button type="submit" className="w-full bg-brand-maroon text-white py-2 rounded-md hover:bg-brand-maroon-dark transition-colors font-bold">
-                Add to Gallery
+              <button 
+                type="submit" 
+                disabled={isUploading}
+                className={`w-full text-white py-2 rounded-md transition-colors font-bold ${isUploading ? 'bg-gray-400 cursor-not-allowed' : 'bg-brand-maroon hover:bg-brand-maroon-dark'}`}
+              >
+                {isUploading ? 'Uploading...' : 'Add to Gallery'}
               </button>
             </form>
           </div>
@@ -132,9 +178,12 @@ const ManageGallery = () => {
 
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {filteredGallery.map((item) => (
-                <div key={item.id} className="relative group bg-gray-50 border rounded-lg p-4 text-center aspect-square flex flex-col items-center justify-center">
-                  <span className="text-4xl mb-2">{item.icon}</span>
-                  <h3 className="font-bold font-heading text-sm text-brand-maroon">{item.title}</h3>
+                <div key={item.id} className="relative group bg-gray-50 border rounded-lg p-4 text-center aspect-square flex flex-col items-center justify-center overflow-hidden">
+                  {item.image_url ? (
+                    <img src={item.image_url} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity" />
+                  ) : null}
+                  <span className="text-4xl mb-2 relative z-10">{item.icon}</span>
+                  <h3 className="font-bold font-heading text-sm text-brand-maroon relative z-10">{item.title}</h3>
                   <button 
                     onClick={() => handleDeleteClick(item.id)} 
                     className="absolute top-2 right-2 p-2 bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full transition-colors opacity-0 group-hover:opacity-100"
