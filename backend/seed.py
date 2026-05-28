@@ -26,14 +26,54 @@ def seed_db():
             
         print("Seeding Gallery...")
         gallery = [
-            {'title': 'Student Work 1', 'span': 'col-span-1 row-span-1', 'icon': '👗'},
-            {'title': 'Class Environment', 'span': 'col-span-1 md:col-span-2 row-span-1', 'icon': '🧵'},
-            {'title': 'Student Work 2', 'span': 'col-span-1 row-span-2', 'icon': '🪡'},
-            {'title': 'Event/Certification', 'span': 'col-span-1 md:col-span-2 row-span-1', 'icon': '📜'},
-            {'title': 'Student Work 3', 'span': 'col-span-1 row-span-1', 'icon': '✂️'},
-            {'title': 'Embroidery Workshop', 'span': 'col-span-1 row-span-2', 'icon': '🌺'},
-            {'title': 'Student Work 4', 'span': 'col-span-1 row-span-1', 'icon': '👘'},
-            {'title': 'Annual Exhibition', 'span': 'col-span-1 md:col-span-2 row-span-1', 'icon': '🎪'},
+            {
+                'title': 'Student Work 1', 
+                'span': 'col-span-1 row-span-1', 
+                'icon': '👗',
+                'image_url': 'https://images.unsplash.com/photo-1544816155-12df9643f363?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Class Environment', 
+                'span': 'col-span-1 md:col-span-2 row-span-1', 
+                'icon': '🧵',
+                'image_url': 'https://images.unsplash.com/photo-1528570188006-4403b794cc53?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Student Work 2', 
+                'span': 'col-span-1 row-span-2', 
+                'icon': '🪡',
+                'image_url': 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Event/Certification', 
+                'span': 'col-span-1 md:col-span-2 row-span-1', 
+                'icon': '📜',
+                'image_url': 'https://images.unsplash.com/photo-1558769132-cb1aea458c5e?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Student Work 3', 
+                'span': 'col-span-1 row-span-1', 
+                'icon': '✂️',
+                'image_url': 'https://images.unsplash.com/photo-1550584552-4b3f40351f2a?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Embroidery Workshop', 
+                'span': 'col-span-1 row-span-2', 
+                'icon': '🌺',
+                'image_url': 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Student Work 4', 
+                'span': 'col-span-1 row-span-1', 
+                'icon': '👘',
+                'image_url': 'https://images.unsplash.com/photo-1484089020051-0918a5985f44?q=80&w=600&auto=format&fit=crop'
+            },
+            {
+                'title': 'Annual Exhibition', 
+                'span': 'col-span-1 md:col-span-2 row-span-1', 
+                'icon': '🎪',
+                'image_url': 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=600&auto=format&fit=crop'
+            },
         ]
         for g in gallery:
             db.add(GalleryItem(**g))
