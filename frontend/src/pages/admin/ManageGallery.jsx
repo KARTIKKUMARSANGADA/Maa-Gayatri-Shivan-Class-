@@ -180,10 +180,13 @@ const ManageGallery = () => {
               {filteredGallery.map((item) => (
                 <div key={item.id} className="relative group bg-gray-50 border rounded-lg p-4 text-center aspect-square flex flex-col items-center justify-center overflow-hidden">
                   {item.image_url ? (
-                    <img src={item.image_url} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:opacity-50 transition-opacity" />
-                  ) : null}
-                  <span className="text-4xl mb-2 relative z-10">{item.icon}</span>
-                  <h3 className="font-bold font-heading text-sm text-brand-maroon relative z-10">{item.title}</h3>
+                    <img src={item.image_url} alt={item.title} className="absolute inset-0 w-full h-full object-cover z-0" />
+                  ) : (
+                    <span className="text-4xl mb-2 relative z-10">{item.icon}</span>
+                  )}
+                  <div className="absolute bottom-0 left-0 w-full bg-black/60 p-2 z-10">
+                    <h3 className="font-bold font-heading text-sm text-white">{item.title}</h3>
+                  </div>
                   <button 
                     onClick={() => handleDeleteClick(item.id)} 
                     className="absolute top-2 right-2 p-2 bg-red-100 text-red-600 hover:bg-red-500 hover:text-white rounded-full transition-colors opacity-0 group-hover:opacity-100"
