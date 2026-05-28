@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+backend/venv/
+.pytest_cache/
+
+# Node
+node_modules/
+dist/
+build/
+.npm/
+frontend/node_modules/
+frontend/dist/
+.vite/
+
+# Env
+.env
+.env.local
+backend/.env
+frontend/.env
+*.env
+
+# Mac
+.DS_Store
