@@ -51,7 +51,7 @@ const ManageGallery = () => {
     uploadData.append('upload_preset', 'gayatri-project');
 
     try {
-      const res = await fetch('https://api.cloudinary.com/v1_1/dvlole3bn/image/upload', {
+      const res = await fetch('https://api.cloudinary.com/v1_1/dvloie3bn/image/upload', {
         method: 'POST',
         body: uploadData
       });
